@@ -25,6 +25,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: x64_v6.config
   DIY_SH: diy.sh
   SSH_ACTIONS: false
@@ -36,8 +37,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-18.04
 
     steps:
     - name: Checkout
@@ -58,7 +58,11 @@ jobs:
         
     
     - name: Clone source code
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
       
     - name: Import external feeds links
       working-directory: ./openwrt
@@ -175,7 +179,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: ActionsRML/delete-workflow-runs@main
+      uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 3
