@@ -10,6 +10,10 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 #Disable root password
 sed -i '33s/^/# /' package/lean/default-settings/files/zzz-default-settings
 
+# Add a feed source
+echo "src-git helloworld https://github.com/fw876/helloworld" >> feeds.conf.default 
+echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
+
 #lcui-add
 #git clone https://github.com/rosywrt/luci-theme-rosy.git package/rosy
 git clone https://github.com/zyltzero/OpenClash.git package/OpenClash
