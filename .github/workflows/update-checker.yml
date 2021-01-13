@@ -17,17 +17,8 @@ env:
 
 on:
   workflow_dispatch:
-#  release:
-#   types: published
-#  push:
-#    branches:
-#      - main
-#    paths:
-#      - 'x64_v6.config'
   schedule:
-    - cron: 0 18 * * 5
-  watch:
-    types: started
+    - cron: 0 */18 * * *
 
 jobs:
   check:
