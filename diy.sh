@@ -13,8 +13,8 @@ sed -i '33s/^/# /' package/lean/default-settings/files/zzz-default-settings
 # Add a feed source
 echo "src-git helloworld https://github.com/fw876/helloworld" >> feeds.conf.default 
 echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
-echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
-echo "src-git small https://github.com/kenzok8/small" >> feeds.conf.default
+# echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
+# echo "src-git small https://github.com/kenzok8/small" >> feeds.conf.default
 
 #lcui-add
 git clone https://github.com/rosywrt/luci-theme-rosy.git package/rosy
@@ -23,4 +23,6 @@ git clone https://github.com/frainzy1477/luci-app-clash.git package/clash
 git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 git clone https://github.com/zyltzero/Lienol-obsolete.git package/passwall
 git clone https://github.com/tty228/luci-app-serverchan.git package/serverchan
+git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8
+git clone https://github.com/kenzok8/small.git package/small
 ./scripts/feeds update -a && ./scripts/feeds install -a
